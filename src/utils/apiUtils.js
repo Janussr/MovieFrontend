@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = '<API url goes here>';
+const URL = 'https://localhost:7273';
 
 const api = () => {
 
