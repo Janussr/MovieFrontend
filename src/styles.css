@@ -43,3 +43,94 @@ ul.header li a:hover:not(.active) {
 .center {
   text-align: center;
 }
+
+/*PAGINATION STYLING*/
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.right {
+  display: inline-block;
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  border: 0.1em solid #0e193c;
+  margin-left: 1em;
+  background-color: #0e193c;
+}
+
+.right:after {
+  content: '';
+  display: inline-block;
+  margin-top: 0.5em;
+  margin-left: -0.2em;
+  width: 1em;
+  height: 1em;
+  border-top: 0.2em solid white;
+  border-right: 0.2em solid white;
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.right:hover {
+  transition: background-color 0.3s ease;
+  background-color: blue;
+}
+
+.left {
+  display: inline-block;
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  border: 0.1em solid #0e193c;
+  margin-right: 1em;
+  background-color: #0e193c;
+}
+
+.left:after {
+  content: '';
+  display: inline-block;
+  margin-top: 0.5em;
+  margin-left: 0.2em;
+  width: 1em;
+  height: 1em;
+  border-top: 0.2em solid white;
+  border-right: 0.2em solid white;
+  -moz-transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+
+.left:hover {
+  transition: background-color 0.3s ease;
+  background-color: blue;
+}
+
+.page-number {
+  display: inline-block;
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  border: 0.1em solid #0e193c;
+  margin-right: 0.25em;
+  margin-left: 0.25em;
+  background-color: #0e193c;
+  color: white;
+  font-weight: bold;
+}
+
+
+.page-number:hover {
+  transition: background-color 0.3s ease;
+  background-color: blue;
+}
+
+.page-number.current-page {
+  background-color: #ffe13f;
+  color: black;
+}
+
+/*PAGINATION END */
