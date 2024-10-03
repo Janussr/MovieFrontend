@@ -132,5 +132,11 @@ ul.header li a:hover:not(.active) {
   background-color: #ffe13f;
   color: black;
 }
-
 /*PAGINATION END */
+
+.movie-poster {
+  width: 100px; /* Adjust as needed */
+  height: 150px; /* Adjust as needed */
+  margin-right: 10px; /* Adjust as needed */
+  /* Add any other styles you need */
+}

@@ -45,6 +45,7 @@ const Pagination = ({ moviesPerPage, totalMovies, currentPage, paginate }) => {
                             </button>
                         </li>
                     ))}
+                    
                     {endPage !== totalPages && (
                         <li>
                             <button onClick={() => paginate(totalPages)} className="page-number">
