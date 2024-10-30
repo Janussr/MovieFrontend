@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';  // Import useNavigate
 import apiUtils from "../utils/apiUtils";
 import Pagination from "../components/Pagination";
 
@@ -7,7 +8,8 @@ const MovieList = () => {
   const URL = apiUtils.getUrl();
   const [currentPage, setCurrentPage] = useState(1);
   const moviesPerPage = 25;
-  const [sortDirection, setSortDirection] = useState('ASC'); // Initial sort direction
+  const [sortDirection, setSortDirection] = useState('ASC');
+  const navigate = useNavigate();  // Initialize useNavigate
 
   useEffect(() => {
     const getMovies = async () => {
@@ -29,80 +31,59 @@ const MovieList = () => {
     setSortDirection('DESC');
   };
 
-  //Change page
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  // Function to add movie to cart
   const addMovieToCart = async (movieId, quantity) => {
-    const userId = 1; // Hardcoded user ID
+    const userId = 1;
     try {
-        // Ensure movieId and quantity are integers
-        const intMovieId = parseInt(movieId, 10);
-        const intQuantity = parseInt(quantity, 10);
+      const intMovieId = parseInt(movieId, 10);
+      const intQuantity = parseInt(quantity, 10);
+      const params = new URLSearchParams({ movieId: intMovieId, userId, quantity: intQuantity });
+      const response = await apiUtils.getAxios().post(`${URL}/api/cart/AddMovieToCart?${params.toString()}`);
 
-        // Construct the query string
-        const params = new URLSearchParams({
-            movieId: intMovieId,
-            userId: userId,
-            quantity: intQuantity,
-        });
-
-        // Log the constructed URL for debugging
-        console.log('Constructed URL:', `${URL}/api/cart/AddMovieToCart?${params.toString()}`);
-
-        const response = await apiUtils.getAxios().post(`${URL}/api/cart/AddMovieToCart?${params.toString()}`);
-
-        if (response.status === 200) {
-            alert(`Movie ${intMovieId} added to cart with quantity ${intQuantity}!`);
-        }
+      if (response.status === 200) {
+        alert(`Movie ${intMovieId} added to cart with quantity ${intQuantity}!`);
+      }
     } catch (error) {
-        console.error('Error adding movie to cart:', error.response ? error.response.data : error);
-        alert('Failed to add movie to cart. Please try again.');
+      console.error('Error adding movie to cart:', error.response ? error.response.data : error);
+      alert('Failed to add movie to cart. Please try again.');
     }
-};
-
+  };
 
   return (
     <div className="center">
-      <h1>Movie List</h1>
-
       <div className="sorting-buttons">
         <button onClick={sortMoviesByYearASC}>Sort by Year (ASC)</button>
         <button onClick={sortMoviesByYearDESC}>Sort by Year (DESC)</button>
       </div>
 
-      <ul>
+      <ul className="movie-grid">
         {movies
           .slice((currentPage - 1) * moviesPerPage, currentPage * moviesPerPage)
           .map(movie => (
-            <li key={movie.id}>
+            <li key={movie.id} className="movie-item">
               <img
                 className="movie-poster"
                 src={movie.poster}
                 alt={`${movie.title} Poster`}
+                onClick={() => navigate(`/moviedetail/${movie.id}`)}  // Redirect on click
               />
-              {/* Display movie title, runtime, and release year */}
-              {movie.title} - {movie.runtime} - {movie.releaseYear} Release Year
-
-              {/* Input for quantity */}
+              {movie.title}
               <input
                 type="number"
-                min="1" // Minimum quantity of 1
-                defaultValue={1} // Default quantity
-                id={`quantity-${movie.id}`} // Unique ID for the input
-                style={{ width: '50px', marginLeft: '10px' }} // Inline style for width and margin
+                min="1"
+                defaultValue={1}
+                id={`quantity-${movie.id}`}
+                style={{ width: '50px', marginLeft: '10px' }}
               />
-
-              {/* Button to add movie to cart */}
-              <button onClick={() => {
-                const quantity = document.getElementById(`quantity-${movie.id}`).value; // Get the quantity value
-                // Add debugging logs to confirm values
-                console.log('Quantity:', quantity);
-                console.log('Movie ID:', movie.id); // Ensure movie.id is correct
-                addMovieToCart(movie.id, quantity); // Using movie.id instead of movie.movieId
-              }}>
+              <button
+                onClick={() => {
+                  const quantity = document.getElementById(`quantity-${movie.id}`).value;
+                  addMovieToCart(movie.id, quantity);
+                }}
+              >
                 Add to Cart
               </button>
             </li>
@@ -118,7 +99,6 @@ const MovieList = () => {
         sortASC={sortMoviesByYearASC}
         sortDESC={sortMoviesByYearDESC}
       />
-
     </div>
   );
 };
