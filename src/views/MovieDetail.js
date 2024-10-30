@@ -25,11 +25,15 @@ const MovieDetail = () => {
   
     return (
       <div className="movie-detail">
-        <h2>{movie.title}</h2>
         <img src={movie.poster} alt={`${movie.title} Poster`} />
-        <p><strong>Runtime:</strong> {movie.runtime}</p>
-        <p><strong>Release Year:</strong> {movie.releaseYear}</p>
+        <h2>{movie.title}</h2>
+        <p><strong>Runtime:</strong> {movie.runtime} m</p>
+        <p><strong>Year:</strong> {movie.releaseYear}</p>
         <p><strong>Description:</strong> {movie.summary}</p>
+        <p><strong>Price:</strong> {movie.price} DKK.-</p>
+        <p><strong>Rated:</strong> {movie.certificate}</p>
+        <p><strong>Rating:</strong> {movie.rating}</p>
+
         {/* Add more movie details as needed */}
       </div>
     );

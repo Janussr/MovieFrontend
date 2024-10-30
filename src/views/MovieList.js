@@ -19,15 +19,15 @@ const MovieList = () => {
     getMovies();
   }, [URL]);
 
-  const sortMoviesByYearASC = async () => {
-    const response = await apiUtils.getAxios().get(URL + '/api/Movies/SortMovieByYearASC');
-    setMovies(response.data);
+   const sortMoviesByYearASC = () => {
+    const sortedMovies = [...movies].sort((a, b) => a.releaseYear - b.releaseYear);
+    setMovies(sortedMovies);
     setSortDirection('ASC');
   };
 
-  const sortMoviesByYearDESC = async () => {
-    const response = await apiUtils.getAxios().get(URL + '/api/Movies/SortMovieByYearDESC');
-    setMovies(response.data);
+  const sortMoviesByYearDESC = () => {
+    const sortedMovies = [...movies].sort((a, b) => b.releaseYear - a.releaseYear);
+    setMovies(sortedMovies);
     setSortDirection('DESC');
   };
 
@@ -51,6 +51,9 @@ const MovieList = () => {
       alert('Failed to add movie to cart. Please try again.');
     }
   };
+
+
+
 
   return (
     <div className="center">
