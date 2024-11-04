@@ -154,6 +154,8 @@ ul.header li a:hover:not(.active) {
   width: 100%;
   height: 100%;
   color: white;
+  
+  
 }
 
 .movie-item {
@@ -166,5 +168,29 @@ ul.header li a:hover:not(.active) {
 .movie-poster {
   width: 100%;
   height: auto;
+  cursor:pointer;
+
 }
+
+.sorting-buttons button {
+  background-color: #0e193c; /* Dark background color */
+  color: white; /* White text */
+  border: 1px solid #4CAF50; /* Green border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 20px; /* Padding for a nice clickable area */
+  margin: 5px; /* Space between buttons */
+  cursor: pointer; /* Changes the cursor to indicate interactivity */
+  font-size: 16px; /* Adjust font size */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+}
+
+.sorting-buttons button:hover {
+  background-color: #4CAF50; /* Change background color on hover */
+  transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+.sorting-buttons button:active {
+  transform: scale(0.95); /* Slightly shrink when clicked */
+}
+
 

@@ -5,6 +5,7 @@ import apiUtils from '../utils/apiUtils';
 const MovieDetail = () => {
     const { id } = useParams();  // Get movie ID from route parameters
     const [movie, setMovie] = useState(null);
+    const [quantity, setQuantity] = useState(1); // State for quantity
     const URL = apiUtils.getUrl();
   
     useEffect(() => {
@@ -22,6 +23,37 @@ const MovieDetail = () => {
     if (!movie) {
       return <p>Loading movie details...</p>;
     }
+
+    const addMovieToCart = async () => {
+      const userId = 1; // Replace with actual user ID if needed
+      try {
+        const intMovieId = parseInt(movie.id, 10);
+        const intQuantity = parseInt(quantity, 10);
+        const params = new URLSearchParams({
+          movieId: intMovieId,
+          userId,
+          quantity: intQuantity,
+        });
+        const response = await apiUtils
+          .getAxios()
+          .post(`${URL}/api/cart/AddMovieToCart?${params.toString()}`);
+  
+        if (response.status === 200) {
+          alert(
+            `Movie ${intMovieId} added to cart with quantity ${intQuantity}!`
+          );
+        }
+      } catch (error) {
+        console.error(
+          "Error adding movie to cart:",
+          error.response ? error.response.data : error
+        );
+        alert("Failed to add movie to cart. Please try again.");
+      }
+    };
+
+
+
   
     return (
       <div className="movie-detail">
@@ -34,7 +66,20 @@ const MovieDetail = () => {
         <p><strong>Rated:</strong> {movie.certificate}</p>
         <p><strong>Rating:</strong> {movie.rating}</p>
 
-        {/* Add more movie details as needed */}
+        {/* Input for specifying quantity */}
+        <label htmlFor="quantity">Quantity:</label>
+        <input
+          type="number"
+          id="quantity"
+          min="1"
+          value={quantity}
+          onChange={(e) => setQuantity(e.target.value)}
+          style={{ width: "50px", marginLeft: "10px" }}
+        />
+
+        <button onClick={addMovieToCart}>
+          Add to Cart
+        </button>
       </div>
     );
   };
