@@ -36,7 +36,7 @@ const MovieDetail = () => {
         });
         const response = await apiUtils
           .getAxios()
-          .post(`${URL}/api/cart/AddMovieToCart?${params.toString()}`);
+          .post(`${URL}/api/cart/AddMovie?${params.toString()}`);
   
         if (response.status === 200) {
           alert(

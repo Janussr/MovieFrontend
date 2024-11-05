@@ -22,7 +22,7 @@ const Cart = () => {
     // Function to handle purchase
     const handlePurchase = async () => {
         try {
-            const response = await apiUtils.getAxios().post(`${URL}/api/cart/PurchaseCartItems?userId=1`);
+            const response = await apiUtils.getAxios().post(`${URL}/api/cart/Purchase?userId=1`);
             
             if (response.status === 200) {
                 setMovies([]); // Clear cart after purchase

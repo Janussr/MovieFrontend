@@ -13,7 +13,7 @@ const MovieList = () => {
 
   useEffect(() => {
     const getMovies = async () => {
-      const response = await apiUtils.getAxios().get(URL + `/api/Movie/all`);
+      const response = await apiUtils.getAxios().get(URL + `/api/Movie/All`);
       setMovies(response.data);
     };
     getMovies();
