@@ -15,7 +15,7 @@ code {
 }
 
 .header a.active {
-  background-color: #4CAF50;
+  background-color: #5e4caf;
 }
 
 ul.header {
@@ -193,4 +193,91 @@ ul.header li a:hover:not(.active) {
   transform: scale(0.95); /* Slightly shrink when clicked */
 }
 
+/* MOVIE DETAILS CSS*/
 
+/* Style for the quantity container */
+.quantity-container {
+  display: flex;
+  align-items: center; /* Center vertically */
+  margin-top: 15px; /* Space between the movie details and input/button */
+}
+
+/* Style for the quantity input */
+.quantity-input {
+  width: 60px; /* Adjust as necessary */
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+  margin-left: 10px;
+  transition: border-color 0.2s;
+}
+
+.quantity-input:focus {
+  border-color: #4CAF50; /* Green border on focus */
+  outline: none;
+  box-shadow: 0px 0px 4px rgba(76, 175, 80, 0.3);
+}
+
+/* Style for Add to Cart button */
+.add-to-cart-button {
+  background: linear-gradient(135deg, #FF9800, #F57C00); /* Orange gradient */
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-left: 15px; /* Space between input and button */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-to-cart-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.add-to-cart-button:active {
+  transform: translateY(1px);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.add-to-cart-button:focus {
+  outline: none;
+  box-shadow: 0px 0px 8px rgba(255, 152, 0, 0.5); /* Glow effect when focused */
+}
+
+
+/*CART CSS*/
+
+
+.purchase-button {
+  background: linear-gradient(135deg, #4CAF50, #2E7D32); /* Green gradient */
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.purchase-button:hover {
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.purchase-button:active {
+  transform: translateY(1px); /* Slight press effect */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.purchase-button:focus {
+  outline: none;
+  box-shadow: 0px 0px 8px rgba(76, 175, 80, 0.5); /* Glow effect when focused */
+}

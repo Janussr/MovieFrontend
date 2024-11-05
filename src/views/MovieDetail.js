@@ -65,23 +65,25 @@ const MovieDetail = () => {
         <p><strong>Price:</strong> {movie.price} DKK.-</p>
         <p><strong>Rated:</strong> {movie.certificate}</p>
         <p><strong>Rating:</strong> {movie.rating}</p>
-
-        {/* Input for specifying quantity */}
-        <label htmlFor="quantity">Quantity:</label>
-        <input
-          type="number"
-          id="quantity"
-          min="1"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-          style={{ width: "50px", marginLeft: "10px" }}
-        />
-
-        <button onClick={addMovieToCart}>
-          Add to Cart
-        </button>
+    
+        {/* Input and Button Container */}
+        <div className="quantity-container">
+          <label htmlFor="quantity">Quantity:</label>
+          <input
+            type="number"
+            id="quantity"
+            min="1"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+            className="quantity-input" // Add class name for styling
+          />
+          <button onClick={addMovieToCart} className="add-to-cart-button"> {/* Add class name for styling */}
+            Add to Cart
+          </button>
+        </div>
       </div>
     );
+    
   };
 
 export default MovieDetail
